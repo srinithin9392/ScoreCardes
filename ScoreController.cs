@@ -28,7 +28,7 @@ namespace ScoreCards.Controllers
         {
             var clint = new HttpClient();
 
-            var Get = await clint.GetAsync("https://www.cricbuzz.com/api/mcenter/comm/151807");
+            var Get = await clint.GetAsync("https://www.cricbuzz.com/api/mcenter/livescore/151829");
             var Score = await Get.Content.ReadAsStreamAsync();
 
            
