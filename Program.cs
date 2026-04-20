@@ -6,7 +6,14 @@ builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(int.Parse(port));
 });
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular",
+        policy => policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
 // Services
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -26,7 +33,7 @@ app.UseSwaggerUI(c =>
 
 
 app.UseAuthorization();
-
+app.UseCors("AllowAngular"); 
 app.MapControllers();
 
 // Test route
